@@ -1,0 +1,208 @@
+---
+title: "control_areas"
+author: "Lizzy Schattle"
+date: "11/16/2020"
+output: html_document
+---
+
+1. install packages tidyverse, sf, here
+```{r setup, include=FALSE,knitr::opts_chunk$set(echo = TRUE)}
+
+# install relevant packages
+library(tidyverse)
+library(rgdal)
+library(sf)
+library(here)
+library(ggplot2)
+library(raster)
+library(stats)
+
+```
+
+
+
+```{r}
+# Assign CFs corridors area (in sq m, from GEE)
+ba_area <- 566763293.454
+be_area <- 484208151.595
+bi_area <- 563785160.270
+bo_area <- 422044521.346
+ik_area <- 1468492450.617
+ka_area <- 472464635.133
+sk_area <- 3250567634.971
+
+# Calculate radius needed to equal that area of a circle
+ba_dist <- (sqrt)((ba_area)/3.14)
+be_dist <- (sqrt)((be_area)/3.14)
+bi_dist <- (sqrt)((bi_area)/3.14)
+bo_dist <- (sqrt)((bo_area)/3.14)
+ik_dist <- (sqrt)((ik_area)/3.14)
+ka_dist <- (sqrt)((ka_area)/3.14)
+sk_dist <- (sqrt)((sk_area)/3.14)
+```
+
+
+```{r}
+
+# BAGATA first
+
+# Upload CF area and surrounding buffer areas
+ba_buffer <-  st_read(here("CFshapefiles", "ba_buffer.shp"))
+ba <- st_read(here("CFshapefiles", "bagata.shp"))
+
+# transform into SFs to plot
+ba_buff_sf <- st_as_sf(ba_buffer)
+ba_sf <- st_as_sf(ba)
+
+# confirm CRS is set for NAD84
+st_crs(ba_buff_sf) <- 4326
+st_crs(ba_sf) <- 4326
+
+# change CRS to WGS 84 / UTM zone 35N
+ba_buff_sf <- st_transform(ba_buff_sf, crs = 32635, units=m)
+ba_sf <- st_transform(ba_sf, crs = 32635, units=m)
+
+# randomly sample points from within the buffered zone around the CF
+ba_samples <- st_sample(ba_buff_sf, 10)
+
+#ba_samp_sf <- st_as_sf(ba_samples)
+#st_crs(ba_samp_sf) <- 4326
+#ba_samp_sf <- st_transform(ba_samp_sf, crs = 32635)
+
+
+#buffer those samples to create an area
+ba_samp_buff <- st_buffer(ba_samples, dist = ba_dist)
+
+# plot all to test
+plot(ba_buff_sf$geometry, axes=TRUE)
+plot(ba_samp_buff, add=TRUE)
+plot(ba_sf$geometry, add=TRUE)
+
+
+#st_write(ba_samp_buff, here("Output", "ba_samples.shp"))
+
+
+```
+
+
+
+```{r}
+# now all CFs
+
+# Upload CF area and surrounding buffer areas
+ba_buffer <-  st_read(here("CFshapefiles", "ba_buffer.shp"))
+be_buffer <-  st_read(here("CFshapefiles", "be_buffer.shp"))
+bi_buffer <-  st_read(here("CFshapefiles", "bi_buffer.shp"))
+bo_buffer <-  st_read(here("CFshapefiles", "bo_buffer.shp"))
+ik_buffer <-  st_read(here("CFshapefiles", "ik_buffer.shp"))
+ka_buffer <-  st_read(here("CFshapefiles", "ka_buffer.shp"))
+sk_buffer <-  st_read(here("CFshapefiles", "corridor_buffer.shp"))
+
+ba <- st_read(here("CFshapefiles", "bagata.shp"))
+be <- st_read(here("CFshapefiles", "befale.shp"))
+bi <- st_read(here("CFshapefiles", "bikoro.shp"))
+bo <- st_read(here("CFshapefiles", "bolomba.shp"))
+ik <- st_read(here("CFshapefiles", "ikela.shp"))
+ka <- st_read(here("CFshapefiles", "kailo.shp"))
+sk <- st_read(here("CFshapefiles", "cf_corridor.shp"))
+
+# transform into SFs to plot
+ba_buff_sf <- st_as_sf(ba_buffer)
+be_buff_sf <- st_as_sf(be_buffer)
+bi_buff_sf <- st_as_sf(bi_buffer)
+bo_buff_sf <- st_as_sf(bo_buffer)
+ik_buff_sf <- st_as_sf(ik_buffer)
+ka_buff_sf <- st_as_sf(ka_buffer)
+sk_buff_sf <- st_as_sf(sk_buffer)
+
+ba_sf <- st_as_sf(ba)
+be_sf <- st_as_sf(be)
+bi_sf <- st_as_sf(bi)
+bo_sf <- st_as_sf(bo)
+ik_sf <- st_as_sf(ik)
+ka_sf <- st_as_sf(ka)
+sk_sf <- st_as_sf(sk)
+
+# confirm CRS is set for NAD84
+st_crs(ba_buff_sf) <- 4326
+st_crs(be_buff_sf) <- 4326
+st_crs(bi_buff_sf) <- 4326
+st_crs(bo_buff_sf) <- 4326
+st_crs(ik_buff_sf) <- 4326
+st_crs(ka_buff_sf) <- 4326
+st_crs(sk_buff_sf) <- 4326
+
+st_crs(ba_sf) <- 4326
+st_crs(be_sf) <- 4326
+st_crs(bi_sf) <- 4326
+st_crs(bo_sf) <- 4326
+st_crs(ik_sf) <- 4326
+st_crs(ka_sf) <- 4326
+st_crs(sk_sf) <- 4326
+
+# change CRS to WGS 84 / UTM zone 35N
+ba_buff_sf <- st_transform(ba_buff_sf, crs = 32635, units=m)
+be_buff_sf <- st_transform(be_buff_sf, crs = 32635, units=m)
+bi_buff_sf <- st_transform(bi_buff_sf, crs = 32635, units=m)
+bo_buff_sf <- st_transform(bo_buff_sf, crs = 32635, units=m)
+ik_buff_sf <- st_transform(ik_buff_sf, crs = 32635, units=m)
+ka_buff_sf <- st_transform(ka_buff_sf, crs = 32635, units=m)
+sk_buff_sf <- st_transform(sk_buff_sf, crs = 32635, units=m)
+
+ba_sf <- st_transform(ba_sf, crs = 32635, units=m)
+be_sf <- st_transform(be_sf, crs = 32635, units=m)
+bi_sf <- st_transform(bi_sf, crs = 32635, units=m)
+bo_sf <- st_transform(bo_sf, crs = 32635, units=m)
+ik_sf <- st_transform(ik_sf, crs = 32635, units=m)
+ka_sf <- st_transform(ka_sf, crs = 32635, units=m)
+sk_sf <- st_transform(sk_sf, crs = 32635, units=m)
+
+# randomly sample points from within the buffered zone around the CF
+ba_samples <- st_sample(ba_buff_sf, 10)
+be_samples <- st_sample(be_buff_sf, 10)
+bi_samples <- st_sample(bi_buff_sf, 10)
+bo_samples <- st_sample(bo_buff_sf, 10)
+ik_samples <- st_sample(ik_buff_sf, 10)
+ka_samples <- st_sample(ka_buff_sf, 10)
+sk_samples <- st_sample(sk_buff_sf, 10)
+
+#buffer those samples to create an area
+ba_samp_buff <- st_buffer(ba_samples, dist = ba_dist)
+be_samp_buff <- st_buffer(be_samples, dist = be_dist)
+bi_samp_buff <- st_buffer(bi_samples, dist = bi_dist)
+bo_samp_buff <- st_buffer(bo_samples, dist = bo_dist)
+ik_samp_buff <- st_buffer(ik_samples, dist = ik_dist)
+ka_samp_buff <- st_buffer(ka_samples, dist = ka_dist)
+sk_samp_buff <- st_buffer(sk_samples, dist = sk_dist)
+
+# plot all to test
+plot(ba_buff_sf$geometry, axes=TRUE)
+plot(ba_samp_buff, add=TRUE)
+plot(ba_sf$geometry, add=TRUE)
+
+plot(be_buff_sf$geometry, axes=TRUE)
+plot(be_samp_buff, add=TRUE)
+plot(be_sf$geometry, add=TRUE)
+
+plot(bi_buff_sf$geometry, axes=TRUE)
+plot(bi_samp_buff, add=TRUE)
+plot(bi_sf$geometry, add=TRUE)
+
+plot(bo_buff_sf$geometry, axes=TRUE)
+plot(bo_samp_buff, add=TRUE)
+plot(bo_sf$geometry, add=TRUE)
+
+plot(ik_buff_sf$geometry, axes=TRUE)
+plot(ik_samp_buff, add=TRUE)
+plot(ik_sf$geometry, add=TRUE)
+
+plot(ka_buff_sf$geometry, axes=TRUE)
+plot(ka_samp_buff, add=TRUE)
+plot(ka_sf$geometry, add=TRUE)
+
+plot(sk_buff_sf$geometry, axes=TRUE)
+plot(sk_samp_buff, add=TRUE)
+plot(sk_sf$geometry, add=TRUE)
+
+```
+
