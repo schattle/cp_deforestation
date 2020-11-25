@@ -5,7 +5,7 @@ date: "11/16/2020"
 output: html_document
 ---
 
-1. install packages tidyverse, sf, here
+1. install packages tidyverse, sf, here, ggplot, raster, stats, rgdal
 ```{r setup, include=FALSE,knitr::opts_chunk$set(echo = TRUE)}
 
 # install relevant packages
@@ -16,11 +16,9 @@ library(here)
 library(ggplot2)
 library(raster)
 library(stats)
-
 ```
 
-
-
+2. include area for each corridor math to find radius input for later
 ```{r}
 # Assign CFs corridors area (in sq m, from GEE)
 ba_area <- 566763293.454
@@ -41,51 +39,45 @@ ka_dist <- (sqrt)((ka_area)/3.14)
 sk_dist <- (sqrt)((sk_area)/3.14)
 ```
 
-
+3. test on Bagata
 ```{r}
-
-# BAGATA first
-
-# Upload CF area and surrounding buffer areas
-ba_buffer <-  st_read(here("CFshapefiles", "ba_buffer.shp"))
-ba <- st_read(here("CFshapefiles", "bagata.shp"))
-
-# transform into SFs to plot
-ba_buff_sf <- st_as_sf(ba_buffer)
-ba_sf <- st_as_sf(ba)
-
-# confirm CRS is set for NAD84
-st_crs(ba_buff_sf) <- 4326
-st_crs(ba_sf) <- 4326
-
-# change CRS to WGS 84 / UTM zone 35N
-ba_buff_sf <- st_transform(ba_buff_sf, crs = 32635, units=m)
-ba_sf <- st_transform(ba_sf, crs = 32635, units=m)
-
-# randomly sample points from within the buffered zone around the CF
-ba_samples <- st_sample(ba_buff_sf, 10)
-
-#ba_samp_sf <- st_as_sf(ba_samples)
-#st_crs(ba_samp_sf) <- 4326
-#ba_samp_sf <- st_transform(ba_samp_sf, crs = 32635)
-
-
-#buffer those samples to create an area
-ba_samp_buff <- st_buffer(ba_samples, dist = ba_dist)
-
-# plot all to test
-plot(ba_buff_sf$geometry, axes=TRUE)
-plot(ba_samp_buff, add=TRUE)
-plot(ba_sf$geometry, add=TRUE)
-
-
-#st_write(ba_samp_buff, here("Output", "ba_samples.shp"))
-
-
+# # test Bagata first
+# 
+# # Upload CF area and surrounding buffer areas
+# ba_buffer <-  st_read(here("CFshapefiles", "ba_buffer.shp"))
+# ba <- st_read(here("CFshapefiles", "bagata.shp"))
+# 
+# # transform into SFs to plot
+# ba_buff_sf <- st_as_sf(ba_buffer)
+# ba_sf <- st_as_sf(ba)
+# 
+# # confirm CRS is set for NAD84
+# st_crs(ba_buff_sf) <- 4326
+# st_crs(ba_sf) <- 4326
+# 
+# # change CRS to WGS 84 / UTM zone 35N
+# ba_buff_sf <- st_transform(ba_buff_sf, crs = 32635, units=m)
+# ba_sf <- st_transform(ba_sf, crs = 32635, units=m)
+# 
+# # randomly sample points from within the buffered zone around the CF
+# ba_samples <- st_sample(ba_buff_sf, 10)
+# 
+# #ba_samp_sf <- st_as_sf(ba_samples)
+# #st_crs(ba_samp_sf) <- 4326
+# #ba_samp_sf <- st_transform(ba_samp_sf, crs = 32635)
+# 
+# #buffer those samples to create an area
+# ba_samp_buff <- st_buffer(ba_samples, dist = ba_dist)
+# 
+# # plot all to test
+# plot(ba_buff_sf$geometry, axes=TRUE)
+# plot(ba_samp_buff, add=TRUE)
+# plot(ba_sf$geometry, add=TRUE)
+# 
+# #st_write(ba_samp_buff, here("Output", "ba_samples.shp"))
 ```
 
-
-
+4. aapply to all CFs
 ```{r}
 # now all CFs
 
@@ -203,6 +195,32 @@ plot(ka_sf$geometry, add=TRUE)
 plot(sk_buff_sf$geometry, axes=TRUE)
 plot(sk_samp_buff, add=TRUE)
 plot(sk_sf$geometry, add=TRUE)
+
+# change buffered samples polygons to sf to export
+ba_samp_buff_sf <- st_as_sf(ba_samp_buff)
+be_samp_buff_sf <- st_as_sf(be_samp_buff)
+bi_samp_buff_sf <- st_as_sf(bi_samp_buff)
+bo_samp_buff_sf <- st_as_sf(bo_samp_buff)
+ik_samp_buff_sf <- st_as_sf(ik_samp_buff)
+ka_samp_buff_sf <- st_as_sf(ka_samp_buff)
+sk_samp_buff_sf <- st_as_sf(sk_samp_buff)
+
+write_sf(ba_samp_buff_sf, here("Output", "ba_samps.shp"))
+write_sf(be_samp_buff_sf, here("Output", "be_samps.shp"))
+write_sf(bi_samp_buff_sf, here("Output", "bi_samps.shp"))
+write_sf(bo_samp_buff_sf, here("Output", "bo_samps.shp"))
+write_sf(ik_samp_buff_sf, here("Output", "ik_samps.shp"))
+write_sf(ka_samp_buff_sf, here("Output", "ka_samps.shp"))
+write_sf(sk_samp_buff_sf, here("Output", "sk_samps.shp"))
+
+# export samples
+#st_write(ba_samp_buff, here("Output", "ba_samples.shp"))
+#st_write(be_samp_buff, here("Output", "be_samples.shp"))
+#st_write(bi_samp_buff, here("Output", "bi_samples.shp"))
+#st_write(bo_samp_buff, here("Output", "bo_samples.shp"))
+#st_write(ik_samp_buff, here("Output", "ik_samples.shp"))
+#st_write(ka_samp_buff, here("Output", "ka_samples.shp"))
+#st_write(sk_samp_buff, here("Output", "sk_samples.shp"))
 
 ```
 
