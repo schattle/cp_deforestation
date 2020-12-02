@@ -1,0 +1,50 @@
+---
+title: "deforestation_model"
+author: "Lizzy Schattle"
+date: "12/1/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+
+library(tidyverse)
+#library(here)
+library(stats)
+library(plyr)
+library(dplyr)
+#library(lubridate)
+library(tidyr)
+```
+
+
+```{r}
+# read in the deforestation and CF properties datasets, make them dfs
+lossyear <- read_csv("cf_lossyear.csv")
+properties <- read_csv("CF_table_new.csv")
+as.data.frame(lossyear)
+as.data.frame(properties)
+
+# merge the dfs together, and choose relevant columns
+cf_table <- merge(lossyear, properties, by = 'id', all = TRUE) %>% 
+  dplyr::select(id, lossyear, yr_approved, year)
+
+# we want to know when the year of loss is greater than the year the CF was approved to just get the rows with the loss after the CF was established
+cf_table$is_approved =
+    ifelse(cf_table$year >= cf_table$yr_approved, 1, 0) 
+
+cf_table$is_approved[is.na(cf_table$is_approved)] <- 0
+
+def_model <- lm(cf_table$lossyear ~ cf_table$is_approved + as.factor(cf_table$id) + as.factor(cf_table$year))
+
+summary(def_model)
+```
+
+
+    - Set up in panel dataset:
+        - Y = outcome (annual rate of deforestation)
+        - ~ever treated variable (but that’s all we have so ignore)
+        - Dependent y~ treated_{year=I} + (unit-fixed effects) Community Forest ID + year ID
+        - lm(annual_forest_loss ~ treatment + as.factor(community) + as.factor(year))
+
+
+
