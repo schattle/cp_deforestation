@@ -1,0 +1,78 @@
+﻿OBJECTID,name,province,territory,Status,Approved,Area,Community,Shape_Leng,Shape_Area
+1,Babumbu,Nord-Kivu,Walikale,Application in process,,8066,Batike,0.471846705,0.006558452
+2,Bahatsa,Nord-Kivu,Oicha,Application in process,,168, ,0.093314294,0.000133555
+3,Bamasobha,Nord-Kivu,Lubero,Application in process,,29142,Mangazi,0.825977315,0.023673918
+4,Bambaka_de_Bafwamogo,Tshopo,Bafwasende,Granted,2/13/2020 0:00,24600,Bafwamogo,0.651534386,0.020206271
+5,Bambuti_Babuloko,Nord-Kivu,Walikale,Granted,4/11/2019 0:00,5573,Bananingi et Bafuna-Bakano,0.364298054,0.004525447
+6,Bananzigha,Nord-Kivu,Walikale,Granted,7/17/2020 0:00,8181,Bananzigha/Kameli,0.435267263,0.006553405
+7,Banisamasi,Nord-Kivu,Walikale,Granted,7/17/2020 0:00,45841,Banisamasi / Itebero,1.48092198,0.038469064
+8,Banyangala_Kikingi,Nord-Kivu,Beni,Application in process,,4836,Kikura,0.428788739,0.003920128
+9,Bapondi,Tshopo,Bafwasende,Granted,2/13/2020 0:00,16000,Bapondi,0.353548999,0.005176643
+10,Barumbi,Tshopo,Bafwasende,Granted,2/13/2020 0:00,49150,Barumbi,1.25374039,0.040471767
+11,Basengele,Nord-Kivu,Walikale,Granted,7/17/2020 0:00,33697,Basengele / Binakwa,0.865866742,0.027223921
+12,Batiri_Nyabayu,Nord-Kivu,Walikale,Application in process,,31063,Batiri/Mpofi,1.225533824,0.025231554
+13,Batiri_Nyabayu_Uchi,Nord-Kivu,Walikale,Application in process,,30720,Batiri/Boboro,1.095812322,0.023927751
+14,Bisemulu,Maniema,Kailo,Granted,12/6/2018 0:00,47013,Bakuko,0.45524051,0.011382836
+15,Bisemulu2,Maniema,Kailo,Granted,12/6/2018 0:00,0,Bakuko,0.728448218,0.017088254
+16,Bisemulu3,Maniema,Kailo,Granted,12/6/2018 0:00,0,Bakuko,0.470821057,0.009782533
+17,Bofekalasumba,Ã‰quateur,Ingende,Application in process,,1353,Bofekalasumba,0.195066851,0.001084431
+18,Bofidji,Ã‰quateur,Bikoro,Granted,2/14/2018 0:00,23128,Bofidji,1.052771063,0.018789294
+19,Bokonda_we_Banza,Ã‰quateur,Bikoro,Granted,2/14/2018 0:00,1572, ,0.18875531,0.00127367
+20,Bolima,Tshuapa,Befale,Granted,2/24/2017 0:00,14030,Bolima,0.916992981,0.012360123
+21,Bomoma_Mpoke,Mai-Ndombe,Oshwe,Granted,,12199,Bekombo,0.502192287,0.009898841
+22,Bondo,Kasai-Central,Dimbelenge,Application in process,,29347,Bondo,0.709521025,0.023919531
+23,Bonginndji,Ã‰quateur,Bikoro,Granted,2/14/2018 0:00,16404, ,0.751314187,0.013326722
+24,Bonkwakoso,Mai-Ndombe,Oshwe,Application in process,,35720,Imoma,0.950947657,0.029048187
+25,Bosende,Ã‰quateur,Lukolela,Granted,9/3/2018 0:00,2958,Bosende,0.22508909,0.002387341
+26,Botale,Ã‰quateur,Bikoro,Granted,2/14/2018 0:00,273,Botale,0.102484072,0.000221985
+27,Buloloma,Nord-Kivu,Beni,Granted,4/11/2019 0:00,2658,Buloloma,0.214728095,0.002157279
+28,Ehanga,Ã‰quateur,Bikoro,Granted,2/14/2018 0:00,1509,Ehanga,0.228747322,0.001225699
+29,Ekele,Ã‰quateur,Bikoro,Granted,2/14/2018 0:00,9150,Ekele,0.633504404,0.007429319
+30,Ikamu,Nord-Kivu,Walikale,Application in process,,5268,Rintama/Katanga,0.355380638,0.004278809
+31,Ikoko_Bonginda,Ã‰quateur,Bikoro,Granted,9/3/2018 0:00,17346,Ikoko-Bonginda,0.592441621,0.014068477
+32,Ilanga,Bikoro,Bikoro,Granted,2/14/2018 0:00,13039, ,0.443393665,0.010585951
+33,Ilebo,Ã‰quateur,Lukolela,Granted,9/3/2018 0:00,12973,Ilebo,0.494893488,0.010536685
+34,Ilima_Lotulo_et_Bolima,Tshuapa,Befale,Granted,3/14/2017 0:00,8412,Lomako- Elenge-Efekefeke,0.392335877,0.006838089
+35,Ilima_Lotulo_et_Bolima_Lomako,Tshuapa,Befale,Granted,2/24/2017 0:00,18412,Ilima,0.526543546,0.009721219
+36,Ilinga,Ã‰quateur,Lukolela,Granted,9/3/2018 0:00,3393,Ilinga,0.268988895,0.00273812
+37,Ilonga_Poo,Ã‰quateur,Basankusu,Granted,6/13/2017 0:00,50000, ,0.880944087,0.040348808
+38,Inganda,Ã‰quateur,Ingende,Application in process,,1095,Inganda,0.149787082,0.000889305
+39,Irebu,Ã‰quateur,Lukolela,Granted,1/28/2019 0:00,29815, ,0.751701712,0.022320627
+40,Kaami,Nord-Kivu,Walikale,Application in process,,42599,Bassa sud,1.160584171,0.034633612
+41,Kadjo,Mai-Ndombe,Oshwe,Granted,,16018,Ipoka-Sud,0.668395126,0.014828433
+42,Kibu,Nord-Kivu,Walikale,Granted,7/17/2020 0:00,32541,Bafuna-Bakano / Kabangwa,1.002609828,0.025196136
+43,Kilongalola,Mai-Ndombe,Oshwe,Granted,,39029,Mbungusani,0.794260245,0.031666446
+44,Kingwaya,Kwilu,Bulungu,Granted,12/26/2019 0:00,1754,Kingwaya,0.18128943,0.001428108
+45,Kombe,Kasai-Central,Dimbelenge,Application in process,,25496,Kombe,0.596999613,0.020778577
+46,Kyakaba_Bolema,Nord-Kivu,Beni,Granted,4/11/2019 0:00,1300,Kyakaba,0.221214926,0.000851191
+47,Lokanga,Ã‰quateur,Bikoro,Granted,2/14/2018 0:00,450,Lokanga,0.077589261,0.000365817
+48,Lokolama,Ã‰quateur,Bikoro,Granted,2/12/2019 0:00,10151,Lokolama,0.561377366,0.0082324
+49,Loondo_Mbula,Ã‰quateur,Bikoro,Granted,2/14/2018 0:00,400,Loondo Mbula Nene,0.078667693,0.000323732
+50,Lotomba,Tshuapa,Monkoto,Application in process,,11410,Lotomba,0.438277667,0.009264981
+51,Lotulo,Tshuapa,Befale,Granted,2/24/2017 0:00,13043,Lotulo,0.934686216,0.010243508
+52,Mbete_Nkoy,Mai-Ndombe,Oshwe,Application in process,,36010,Imoma,0.788896198,0.029285418
+53,Mbongwanjale,Tshuapa,Monkoto,Application in process,,1285, ,0.179159014,0.00104353
+54,Mbungu,Nord-Kivu,Walikale,Application in process,,35643,Bakombe-Bayugu,0.975573894,0.028985651
+55,Mian_Mana,Kwilu,Bagata,Granted,2/12/2019 0:00,49247,Sia,0.938022961,0.045939942
+56,MIB_059,Maniema,Punia,Granted,11/28/2018 0:00,49635,Banamea,0.941369413,0.040319999
+57,Mibenga,Ã‰quateur,Lukolela,Granted,9/3/2018 0:00,11890,Mibenga,0.552505186,0.009654557
+58,Mitshia,Kasai-Central,Dimbelenge,Application in process,,31069,Mitshia,0.73669977,0.025328259
+59,Mokili,Ã‰quateur,Bikoro,Granted,2/14/2018 0:00,131,Mokili,0.090670022,0.00010659
+60,Mongobea,Maniema,Punia,Granted,11/28/2018 0:00,48695,Babongena,0.955146648,0.039104668
+61,Mooto,Ã‰quateur,Bikoro,Granted,2/14/2018 0:00,1147,Mooto,0.159029873,0.000931644
+62,Motondo,Nord-Kivu,Walikale,Application in process,,23642, ,1.32171191,0.028480464
+63,Mpangi,Ã‰quateur,Bikoro,Granted,2/14/2018 0:00,1936,Mpangi,0.23857539,0.001571012
+64,Ngelo_Monzoi,Ã‰quateur,Bikoro,Granted,9/3/2018 0:00,11461,Ngelo-Monzoi,0.642685989,0.009223492
+65,Nkake,Ã‰quateur,Bikoro,Granted,9/3/2018 0:00,9271,Nkake,0.427040435,0.00786229
+66,Nkumualompole,Mai-Ndombe,Oshwe,Granted,,36344,Lompole,0.869940558,0.022339709
+67,Nsuhu,Nord-Kivu,Walikale,Application in process,,49219,Bakokpe et Batike/Nkuba et Obaye,1.11170111,0.040025629
+68,Nzondo,Ã‰quateur,Lukolela,Granted,9/3/2018 0:00,606,Nzondo,0.091550826,0.000351031
+69,Ona,Maniema,Punia,Granted,11/28/2018 0:00,48695,Banamukulumanya,1.171740545,0.039863845
+70,Penzele,Ã‰quateur,Bikoro,Granted,2/14/2018 0:00,10578,Penzele,0.52802662,0.008594332
+71,Penzele_Ebondo_Bongonda,Ã‰quateur,Bolomba,Granted,2/15/2019 0:00,42299,Penzele,0.96848875,0.034134212
+72,Samba,Ã‰quateur,Bikoro,Granted,2/14/2018 0:00,707,Samba,0.140273154,0.000574243
+73,Sambwa_Nkoy,Tshuapa,Monkoto,Application in process,,1304,Sambwa-Nkoy,0.160150701,0.001045549
+74,Seko,Nord-Kivu,Walikale,Application in process,,21578,Batike,0.958441908,0.017547356
+75,Tenambo,Nord-Kivu,Irumu,Application in process,,16661, ,0.786077412,0.01352464
+76,Tongonuena,Kasai-Central,Dimbelenge,Application in process,,25848,Tongonuena,0.659556347,0.021070994
+77,Undisa,Ã‰quateur,Lukolela,Application in process,,49216,Bassa_nord,1.204606824,0.040006586
