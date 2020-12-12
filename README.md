@@ -1,2 +1,2 @@
 # cp_deforestation
-selecting control areas for comparison to community forests
+Analyzing deforestation inside and out of community forests in the DRC
