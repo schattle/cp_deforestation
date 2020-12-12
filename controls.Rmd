@@ -5,10 +5,14 @@ date: "11/16/2020"
 output: html_document
 ---
 
+
+We decided not to use this method of analyzing controls for each CF because we found new data to use in a more comparable analysis of CFs that have been granted vs. CFs in process of being granted. I've left these beginning steps here for potential future use.
+
+
+
 1. install packages tidyverse, sf, here, ggplot, raster, stats, rgdal
 ```{r setup, include=FALSE,knitr::opts_chunk$set(echo = TRUE)}
-
-# install relevant packages
+# packages
 library(tidyverse)
 library(rgdal)
 library(sf)
@@ -80,7 +84,6 @@ sk_dist <- (sqrt)((sk_area)/3.14)
 4. aapply to all CFs
 ```{r}
 # now all CFs
-
 # Upload CF area and surrounding buffer areas
 ba_buffer <-  st_read(here("CFshapefiles", "ba_buffer.shp"))
 be_buffer <-  st_read(here("CFshapefiles", "be_buffer.shp"))
@@ -205,22 +208,22 @@ ik_samp_buff_sf <- st_as_sf(ik_samp_buff)
 ka_samp_buff_sf <- st_as_sf(ka_samp_buff)
 sk_samp_buff_sf <- st_as_sf(sk_samp_buff)
 
-write_sf(ba_samp_buff_sf, here("Output", "ba_samps.shp"))
-write_sf(be_samp_buff_sf, here("Output", "be_samps.shp"))
-write_sf(bi_samp_buff_sf, here("Output", "bi_samps.shp"))
-write_sf(bo_samp_buff_sf, here("Output", "bo_samps.shp"))
-write_sf(ik_samp_buff_sf, here("Output", "ik_samps.shp"))
-write_sf(ka_samp_buff_sf, here("Output", "ka_samps.shp"))
-write_sf(sk_samp_buff_sf, here("Output", "sk_samps.shp"))
+# write_sf(ba_samp_buff_sf, here("Output", "ba_samps.shp"))
+# write_sf(be_samp_buff_sf, here("Output", "be_samps.shp"))
+# write_sf(bi_samp_buff_sf, here("Output", "bi_samps.shp"))
+# write_sf(bo_samp_buff_sf, here("Output", "bo_samps.shp"))
+# write_sf(ik_samp_buff_sf, here("Output", "ik_samps.shp"))
+# write_sf(ka_samp_buff_sf, here("Output", "ka_samps.shp"))
+# write_sf(sk_samp_buff_sf, here("Output", "sk_samps.shp"))
 
 # export samples
-#st_write(ba_samp_buff, here("Output", "ba_samples.shp"))
-#st_write(be_samp_buff, here("Output", "be_samples.shp"))
-#st_write(bi_samp_buff, here("Output", "bi_samples.shp"))
-#st_write(bo_samp_buff, here("Output", "bo_samples.shp"))
-#st_write(ik_samp_buff, here("Output", "ik_samples.shp"))
-#st_write(ka_samp_buff, here("Output", "ka_samples.shp"))
-#st_write(sk_samp_buff, here("Output", "sk_samples.shp"))
+st_write(ba_samp_buff_sf, here("Output", "ba_samples.shp"))
+st_write(be_samp_buff_sf, here("Output", "be_samples.shp"))
+st_write(bi_samp_buff_sf, here("Output", "bi_samples.shp"))
+st_write(bo_samp_buff_sf, here("Output", "bo_samples.shp"))
+st_write(ik_samp_buff_sf, here("Output", "ik_samples.shp"))
+st_write(ka_samp_buff_sf, here("Output", "ka_samples.shp"))
+st_write(sk_samp_buff_sf, here("Output", "sk_samples.shp"))
 
 ```
 

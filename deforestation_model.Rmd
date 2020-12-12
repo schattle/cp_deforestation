@@ -6,13 +6,11 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-
+# packages
 library(tidyverse)
-#library(here)
 library(stats)
 library(plyr)
 library(dplyr)
-#library(lubridate)
 library(tidyr)
 ```
 
@@ -32,19 +30,58 @@ cf_table <- merge(lossyear, properties, by = 'id', all = TRUE) %>%
 cf_table$is_approved =
     ifelse(cf_table$year >= cf_table$yr_approved, 1, 0) 
 
+# set the NAs (non designated CFs) to 0
 cf_table$is_approved[is.na(cf_table$is_approved)] <- 0
 
-def_model <- lm(cf_table$lossyear ~ cf_table$is_approved + as.factor(cf_table$id) + as.factor(cf_table$year))
+# model outcome (rate of deforestation) dependent on if CF is approved or not
+model <- lm(cf_table$lossyear ~ cf_table$is_approved + as.factor(cf_table$id) + as.factor(cf_table$year))
+summary(model)
 
-summary(def_model)
+
+# difference in difference which used a factor of dependent variable*time
+cf_table$did = cf_table$year * cf_table$is_approved
+
+didreg = lm(formula = lossyear ~ is_approved + year + did, data = cf_table)
+summary(didreg)
+
+# a different way of doing difference in different to check the results
+didreg1 = lm(lossyear ~ is_approved*year, data = cf_table)
+summary(didreg1)
+
+
+
+
+# now I'm gonna do this all again using percent loss instead of total loss
+
+# reestablish data table with proportional loss
+cf_table_new <- merge(lossyear, properties, by = 'id', all = TRUE) %>% 
+  dplyr::select(id, lossyear, yr_approved, year, Area) %>% 
+  mutate(area = Area*10000) %>% # hectares to m^2
+  mutate(cf_perc_loss = lossyear/area) %>% # make it proportion of area
+  dplyr::select(id, yr_approved, year, cf_perc_loss) %>% 
+  dplyr::filter(!(id %in% c(14,15,16,78,79))) 
+# 78 and 79 were blank, 14, 15, 16 were all Bisemulu, which is separated into 3 separate chunks so we   weren't able to parse the deforestation and area for each chunk
+
+# we want to know when the year of loss is greater than the year the CF was approved to just get the rows with the loss after the CF was established
+cf_table_new$is_approved =
+    ifelse(cf_table_new$year >= cf_table_new$yr_approved, 1, 0) 
+
+# set the NAs (non designated CFs) to 0
+cf_table_new$is_approved[is.na(cf_table_new$is_approved)] <- 0
+
+# a model displaying the importance of each factor
+prop_model <- lm(cf_perc_loss ~ is_approved + as.factor(id) + as.factor(year), data = cf_table_new)
+summary(prop_model)
+
+# model using differenc in difference in two different ways
+cf_table_new$did = cf_table_new$year*cf_table_new$is_approved
+
+didregnew = lm(formula = cf_perc_loss ~ is_approved + year + did, data = cf_table_new)
+summary(didregnew)
+
+didregnew1 = lm(formula = cf_perc_loss ~ is_approved*year, data = cf_table_new)
+summary(didregnew1)
+
 ```
-
-
-    - Set up in panel dataset:
-        - Y = outcome (annual rate of deforestation)
-        - ~ever treated variable (but that’s all we have so ignore)
-        - Dependent y~ treated_{year=I} + (unit-fixed effects) Community Forest ID + year ID
-        - lm(annual_forest_loss ~ treatment + as.factor(community) + as.factor(year))
-
 
 
