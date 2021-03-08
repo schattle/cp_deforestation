@@ -82,6 +82,8 @@ summary(didregnew)
 didregnew1 = lm(formula = cf_perc_loss ~ is_approved*year, data = cf_table_new)
 summary(didregnew1)
 
+confint(didregnew1)
+
 ```
 
 
